@@ -23,7 +23,22 @@ const schema = a.schema({
         query: a.ref('knowledgeBase'),
       }),
     ]
-  })
+  }).authorization((allow) => allow.owner()),
+  
+  chatNamer: a
+    .generation({
+      aiModel: a.ai.model("Claude 3 Haiku"),
+      systemPrompt: `You are a helpful assistant that writes descriptive names for conversations. Names should be 2-10 words long`,
+    })
+    .arguments({
+      content: a.string(),
+    })
+    .returns(
+      a.customType({
+        name: a.string(),
+      })
+    )
+    .authorization((allow) => [allow.authenticated()])
 });
 
 export const data = defineData({

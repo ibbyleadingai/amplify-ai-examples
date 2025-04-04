@@ -1,18 +1,18 @@
 version: 1
+appRoot: claude-ai
 applications:
   - frontend:
       phases:
         preBuild:
           commands:
-            - cd claude-ai
             - npm ci
         build:
           commands:
             - npm run build
       artifacts:
-        baseDirectory: claude-ai/.next
+        baseDirectory: .next
         files:
           - '**/*'
       cache:
         paths:
-          - claude-ai/node_modules/**/* 
+          - node_modules/**/* 

@@ -90,7 +90,11 @@ export const Chat = ({ id }: { id: string }) => {
         handleSendMessage={handleNewMessage}
         isLoading={isLoading}
         messageRenderer={{
-          text: ({ text }) => <ReactMarkdown>{text}</ReactMarkdown>,
+          text: ({ text }) => (
+            <div style={{ color: 'var(--amplify-colors-font-primary)' }}>
+              <ReactMarkdown>{text}</ReactMarkdown>
+            </div>
+          ),
         }}
       />
     </View>

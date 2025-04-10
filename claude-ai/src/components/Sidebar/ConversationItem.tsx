@@ -8,6 +8,7 @@ import {
   MenuItem,
   TextField,
   View,
+  Text,
 } from "@aws-amplify/ui-react";
 import {
   LuCheck,
@@ -77,7 +78,7 @@ export const ConversationItem = ({
           </View>
         ) : (
           <Link href={`/chat/${conversation.id}`}>
-            {conversation.name ?? conversation.id}
+            <Text color="font.primary">{conversation.name ?? conversation.id}</Text>
           </Link>
         )}
       </Flex>

@@ -1,7 +1,12 @@
-import { Flex, Heading, Button } from "@aws-amplify/ui-react";
+import { Flex, Heading, Button, ColorMode } from "@aws-amplify/ui-react";
 import { useSidebar } from "@/providers/SidebarProvider";
+import ThemeToggle from "./ThemeToggle";
 
-export const Header = () => {
+interface HeaderProps {
+  colorMode: ColorMode;
+}
+
+export const Header = ({ colorMode }: HeaderProps) => {
   const { isOpen, toggleSidebar } = useSidebar();
 
   return (
@@ -26,6 +31,9 @@ export const Header = () => {
       <Heading level={1} fontSize="1.5rem" color="var(--amplify-colors-font-primary)">
         AI Assistant
       </Heading>
+      <Flex flex="1" justifyContent="flex-end">
+        <ThemeToggle initialValue={colorMode} />
+      </Flex>
     </Flex>
   );
 }; 

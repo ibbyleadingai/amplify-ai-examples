@@ -39,7 +39,7 @@ export const Chat = ({ id }: { id: string }) => {
               'text' in content ? content.text ?? "" : ""
             ).join(""),
           })
-          .then((res) => {
+          .then((res: { data?: { name: string } }) => {
             if (res.data?.name) {
               updateConversation({
                 id,
@@ -62,7 +62,7 @@ export const Chat = ({ id }: { id: string }) => {
             'text' in content ? content.text ?? "" : ""
           ).join(""),
         })
-        .then((res) => {
+        .then((res: { data?: { name: string } }) => {
           if (res.data?.name) {
             updateConversation({
               id,
@@ -81,7 +81,11 @@ export const Chat = ({ id }: { id: string }) => {
         handleSendMessage={handleNewMessage}
         isLoading={isLoading}
         messageRenderer={{
-          text: ({ text }) => <ReactMarkdown>{text}</ReactMarkdown>,
+          text: ({ text }) => (
+            <div style={{ color: 'var(--amplify-colors-font-primary)' }}>
+              <ReactMarkdown>{text}</ReactMarkdown>
+            </div>
+          ),
         }}
       />
     </View>

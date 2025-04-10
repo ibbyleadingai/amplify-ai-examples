@@ -6,7 +6,6 @@ import { theme } from "@/theme";
 import { Layout } from "@/components/Layout";
 import { Sidebar } from "@/components/Sidebar";
 import { CreateChat } from "@/components/Sidebar/CreateChat";
-import ThemeToggle from "@/components/ThemeToggle";
 import { LogoutButton } from "@/components/Sidebar/Logout";
 import "./globals.css";
 
@@ -21,13 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body {...theme.containerProps({ colorMode })}>
-        <Layout>
+        <Layout colorMode={colorMode}>
           <ConfigureAmplify />
 
           <Sidebar>
             <LogoutButton />
             <CreateChat />
-            <ThemeToggle initialValue={colorMode} />
           </Sidebar>
 
           {children}

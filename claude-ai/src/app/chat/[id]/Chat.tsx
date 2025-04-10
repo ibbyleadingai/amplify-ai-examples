@@ -8,6 +8,17 @@ import { View } from "@aws-amplify/ui-react";
 import { client, useAIConversation } from "@/client";
 import { ConversationsContext } from "@/providers/ConversationsProvider";
 import ReactMarkdown from "react-markdown";
+import { GraphQLFormattedError } from 'graphql';
+
+type ChatNamerResponse = {
+  data: {
+    name?: string | null;
+  } | null;
+  errors?: GraphQLFormattedError[];
+  extensions?: {
+    [key: string]: string | number | boolean | null | undefined;
+  };
+};
 
 export const Chat = ({ id }: { id: string }) => {
   const { updateConversation } = React.useContext(ConversationsContext);
@@ -39,7 +50,7 @@ export const Chat = ({ id }: { id: string }) => {
               'text' in content ? content.text ?? "" : ""
             ).join(""),
           })
-          .then((res: { data?: { name: string } }) => {
+          .then((res: ChatNamerResponse) => {
             if (res.data?.name) {
               updateConversation({
                 id,
@@ -62,7 +73,7 @@ export const Chat = ({ id }: { id: string }) => {
             'text' in content ? content.text ?? "" : ""
           ).join(""),
         })
-        .then((res: { data?: { name: string } }) => {
+        .then((res: ChatNamerResponse) => {
           if (res.data?.name) {
             updateConversation({
               id,

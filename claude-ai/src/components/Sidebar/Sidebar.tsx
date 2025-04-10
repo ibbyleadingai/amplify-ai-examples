@@ -2,13 +2,23 @@
 import * as React from "react";
 import { Flex, ScrollView } from "@aws-amplify/ui-react";
 import { ConversationsContext } from "@/providers/ConversationsProvider";
+import { useSidebar } from "@/providers/SidebarProvider";
 import { ConversationItem } from "./ConversationItem";
 
 export const Sidebar = ({ children }: React.PropsWithChildren) => {
   const { conversations } = React.useContext(ConversationsContext);
+  const { isOpen } = useSidebar();
 
   return (
-    <Flex direction="column" width="500px" height="100%">
+    <Flex
+      direction="column"
+      width={isOpen ? "500px" : "0px"}
+      height="100%"
+      style={{
+        transition: "width 0.3s ease-in-out",
+        overflow: "hidden"
+      }}
+    >
       <ScrollView flex="1">
         <Flex direction="column" padding="medium">
           {conversations.map((conversation) => (

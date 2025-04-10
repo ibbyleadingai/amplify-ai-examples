@@ -29,7 +29,7 @@ console.log('Adding policy to KnowledgeBaseDataSource');
 KnowledgeBaseDataSource.grantPrincipal.addToPrincipalPolicy(
   new PolicyStatement({
     resources: [
-      `arn:aws:bedrock:${cdk.Stack.of(backend.data).region}:${cdk.Stack.of(backend.data).account}:knowledge-base/P7UXYCISYB`
+      `arn:aws:bedrock:${cdk.Stack.of(backend.data).region}:${cdk.Stack.of(backend.data).account}:knowledge-base/DUQ6IG6S9K`
     ],
     actions: ["bedrock:Retrieve"],
   }),

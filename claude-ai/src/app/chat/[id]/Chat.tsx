@@ -39,7 +39,7 @@ export const Chat = ({ id }: { id: string }) => {
               'text' in content ? content.text ?? "" : ""
             ).join(""),
           })
-          .then((res) => {
+          .then((res: any) => {
             if (res.data?.name) {
               updateConversation({
                 id,

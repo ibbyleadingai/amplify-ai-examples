@@ -39,7 +39,7 @@ export const Chat = ({ id }: { id: string }) => {
               'text' in content ? content.text ?? "" : ""
             ).join(""),
           })
-          .then((res: { data?: { name?: string } }) => {
+          .then((res: { data: { name?: string | null } | null }) => {
             if (res.data?.name) {
               updateConversation({
                 id,
@@ -62,7 +62,7 @@ export const Chat = ({ id }: { id: string }) => {
             'text' in content ? content.text ?? "" : ""
           ).join(""),
         })
-        .then((res: { data?: { name?: string } }) => {
+        .then((res: { data: { name?: string | null } | null }) => {
           if (res.data?.name) {
             updateConversation({
               id,

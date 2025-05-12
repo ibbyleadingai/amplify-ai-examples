@@ -64,3 +64,5 @@ const schema = a.schema({
 export const data = defineData({
   schema,
 });
+
+export type Schema = ClientSchema<typeof schema>;

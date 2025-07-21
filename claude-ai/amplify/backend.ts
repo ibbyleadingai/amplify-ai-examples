@@ -1,4 +1,4 @@
-import { defineBackend } from '@aws-amplify/backend';
+import { defineBackend, defineStack } from '@aws-amplify/backend';
 import { auth } from './auth/resource';
 import { data } from './data/resource';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
@@ -7,9 +7,16 @@ import * as cdk from 'aws-cdk-lib';
 /**
  * @see https://docs.amplify.aws/react/build-a-backend/ to add storage, functions, and more
  */
-const backend = defineBackend({
-  auth,
-  data,
+// 1. Define a single stack for all resources
+const leadingaiStack = defineStack({
+  name: 'leadingai-rag-assistant', // CloudFormation stack name
+  prefix: 'leadingai', // Resource name prefix
+});
+
+// 2. Attach all resources to this stack
+export const backend = defineBackend({
+  auth: auth.attachStack(leadingaiStack),
+  data: data.attachStack(leadingaiStack),
 });
 
 const KnowledgeBaseDataSource = 
